@@ -1,12 +1,23 @@
 //This file identifies all the web elements required to enter a search criteria on the HomePAge
 
-package UIMap;
+package uiMap;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static org.testng.AssertJUnit.*;
 
 public class HomePage{
+	
+	//Select country
+	public void selectCountry(String countryName,WebDriver driver){
+		
+		//driver.findElement(By.className("chf_indian_flag_big chf_flL")).isDisplayed();
+		assertTrue(driver.findElement(By.id("country_links")).isDisplayed());
+		driver.findElement(By.className("chf_flL chf_dropdown_arrow")).click();
+		
+		
+	}
 	
 	//Flight tab
 	public WebElement flightsTab(WebDriver driver){	
@@ -59,4 +70,9 @@ public class HomePage{
 		return driver.findElement(By.className("btn btn-md btn-block btn-primary-red popUp_flightSearch"));
 	}
 	
+	
+	//Search in progress window
+	public boolean searchInProgress(WebDriver driver){
+		return driver.findElement(By.className("intersitial overlay_cases clearfix col-lg-12 col-md-12 col-sm-12 col-xs-12")).isDisplayed();
+	}
 }

@@ -1,2 +1,2 @@
-package UIMap;
+package uiMap;
 
