@@ -35,20 +35,25 @@ public class HomePage{
 	}
 	
 	//Origin airport
-	public void departureAirport(WebDriver driver,String originAirport){	
-		driver.findElement(By.cssSelector("input[@placeholder='Type Departure City']"));
+	public WebElement departureAirport(WebDriver driver){	
+		return driver.findElement(By.cssSelector("input[@placeholder='Type Departure City']"));
 	}
 	
 	//Destination airport
-	public void destinationAirport(WebDriver driver,String originAirport){	
-		driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
+	public WebElement destinationAirport(WebDriver driver){	
+		return driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
 	}
 	
 	//DepartureDate
-	public WebElement departureDate(WebDriver driver){
+	public void departureDate(WebDriver driver,String startDate){
 		driver.findElement(By.id("start_date_sec")).click();
 		(driver.findElement(By.id("ui-datepicker-div"))).isDisplayed();
-		return driver.findElement(By.className("ui-datepicker-group ui-datepicker-group-first"));
+		
+		if(startDate.equals("today"))
+			driver.findElement(By.className("ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today")).click();
+		else
+			driver.findElement(By.cssSelector("class[@fare-date=startDate]")).click();
+		
 		
 	}
 	
@@ -56,7 +61,8 @@ public class HomePage{
 	public WebElement returnDate(WebDriver driver){
 		driver.findElement(By.id("return_date_sec")).click();
 		(driver.findElement(By.id("ui-datepicker-div"))).isDisplayed();
-		return driver.findElement(By.className("ui-datepicker-group ui-datepicker-group-first"));	
+		return driver.findElement(By.className("ui-datepicker-group ui-datepicker-group-first"));
+		//driver.findElement(By.cssSelector("class[@fare-date=startDate]")).click();
 	}
 	
 	//flights submit button

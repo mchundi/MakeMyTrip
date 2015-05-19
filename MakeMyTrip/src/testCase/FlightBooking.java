@@ -7,6 +7,7 @@ import helperFunctions.*;
 import uiMap.HomePage;
 
 import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 //import static org.testng.AssertJUnit.*;
@@ -52,10 +53,10 @@ public class FlightBooking{
 		if(bookingType.equals("RoundTrip"))
 			hP.roundTrip(driver).click();
 		
-		hP.departureAirport(driver,travelOrigin);
-		hP.destinationAirport(driver,travelDestination);
+		hP.departureAirport(driver).sendKeys(travelOrigin,Keys.TAB);
+		hP.destinationAirport(driver).sendKeys(travelDestination,Keys.TAB);
 		
-		hP.departureDate(driver).sendKeys(departureDate);
+		hP.departureDate(driver,departureDate);
 		hP.returnDate(driver).sendKeys(returnDate);
 		
 		//submit the search
