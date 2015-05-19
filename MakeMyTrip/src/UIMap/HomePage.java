@@ -35,13 +35,13 @@ public class HomePage{
 	}
 	
 	//Origin airport
-	public WebElement departureAirport(WebDriver driver){	
-		return driver.findElement(By.cssSelector("input[@placeholder='Type Departure City']"));
+	public void departureAirport(WebDriver driver,String originAirport){	
+		driver.findElement(By.cssSelector("input[@placeholder='Type Departure City']"));
 	}
 	
 	//Destination airport
-	public WebElement destinationAirport(WebDriver driver){	
-		return driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
+	public void destinationAirport(WebDriver driver,String originAirport){	
+		driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
 	}
 	
 	//DepartureDate
