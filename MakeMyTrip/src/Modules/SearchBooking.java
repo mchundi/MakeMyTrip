@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 import helperFunctions.*;
 import uiMap.HomePage;
 
-import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
@@ -23,7 +22,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SearchBooking{
 	
-	public void loadSearchCriteria(String in) throws IOException{
+	public void loadSearchCriteria(WebDriver driver,String in) throws IOException{
 		
 		GetInputs gI = new GetInputs();
 		HomePage hP = new HomePage();
@@ -33,7 +32,7 @@ public class SearchBooking{
 		//File inFile = new File("src\\input\\FlightBookingInput.xlsx");
 		File inFile = new File(in);
 		String paramValues[] = gI.openInputFile(inFile);
-		WebDriver driver = new FirefoxDriver();
+		
 		
 		//set parameters
 		String launchURL = gI.getLaunchURL(paramValues);
@@ -44,7 +43,7 @@ public class SearchBooking{
 		String departureDate = gI.getDepartureDate(paramValues);
 		String returnDate = gI.getReturnDate(paramValues);
 		
-		//Launch homepage
+		//Launch home page
 		driver.get(launchURL);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		aA.pageTitle(driver,"MakeMyTrip, India's No 1 Travel Site | Book Flights, Hotels, Holiday Packages & Bus Tickets");
@@ -65,13 +64,11 @@ public class SearchBooking{
 		
 		//submit the search
 		hP.flightsSubmit(driver).click();
-	}
-	
-	public String[] selectFlights(String sortOrder){
-		String [] flightNumbers = new String[2];
+		hP.searchConfirmation(driver).click();
 		
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		new AssertActions().pageTitle(driver, "Flight Split Listing View");
 		
-		return flightNumbers;
 	}
 	
 	public void bookingSummary(String[] flightDetails){

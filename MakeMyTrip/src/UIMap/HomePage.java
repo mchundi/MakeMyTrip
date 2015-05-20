@@ -2,7 +2,7 @@
 
 package uiMap;
 
-import java.util.Calendar;
+//import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -23,23 +23,17 @@ public class HomePage{
 	
 	//Flight tab
 	public WebElement flightsTab(WebDriver driver){	
-		WebElement a = driver.findElement(By.cssSelector("a[href='http://www.makemytrip.com/flights']"));
-		System.out.println(a);
-		return a;
+		return driver.findElement(By.cssSelector("a[href='http://www.makemytrip.com/flights']"));
 	}
 	
 	//Domestic option
 	public WebElement domesticTravel(WebDriver driver){	
-		WebElement a = driver.findElement(By.linkText("Domestic"));
-		System.out.println(a);
-		return a;
+		return driver.findElement(By.linkText("Domestic"));
 	}
 	
 	//Round trip type
 	public WebElement roundTrip(WebDriver driver){	
-		WebElement a = driver.findElement(By.id("round_trip_button1"));
-		System.out.println(a);
-		return a;
+		return driver.findElement(By.id("round_trip_button1"));
 	}
 	
 	//Origin airport
@@ -49,9 +43,7 @@ public class HomePage{
 	
 	//Destination airport
 	public WebElement destinationAirport(WebDriver driver){	
-		WebElement a = driver.findElement(By.cssSelector("input[placeholder='Type Destination City']"));
-		System.out.println(a);
-		return a;
+		return driver.findElement(By.cssSelector("input[placeholder='Type Destination City']"));
 	}
 	
 	//DepartureDate
@@ -65,7 +57,7 @@ public class HomePage{
 		 driver.findElement(By.cssSelector("class[fare-date='"+stDate+"']")).click();
 		*/
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("/html/body/div[11]/div[2]/table/tbody/tr[4]/td[4]/a")).click();
+		driver.findElement(By.xpath("/html/body/div[11]/div[2]/table/tbody/tr[4]/td[5]/a")).click();
 	}
 	
 	//ReturnDate
@@ -80,7 +72,7 @@ public class HomePage{
 		driver.findElement(By.cssSelector("class.fare-date="+rtnDate)).click();
 		*/
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("/html/body/div[11]/div[2]/table/tbody/tr[4]/td[5]/a")).click();
+		driver.findElement(By.xpath("/html/body/div[11]/div[2]/table/tbody/tr[4]/td[6]/a")).click();
 	}
 	
 	//flights submit button
@@ -90,8 +82,11 @@ public class HomePage{
 	
 	//search confirmation
 	public WebElement searchConfirmation(WebDriver driver){
-		driver.findElement(By.className("modal-content overlay_cases")).isDisplayed();
-		return driver.findElement(By.className("btn btn-md btn-block btn-primary-red popUp_flightSearch"));
+		//driver.findElement(By.cssSelector("modal-content.overlay_cases")).isDisplayed();
+		driver.findElement(By.xpath("/html/body/div[8]/div/div")).isDisplayed();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//return driver.findElement(By.cssSelector("btn.btn-md btn-block.btn-primary-red.popUp_flightSearch"));
+		return driver.findElement(By.xpath("/html/body/div[8]/div/div/div[2]/div/div[1]/a"));
 	}
 	
 	
