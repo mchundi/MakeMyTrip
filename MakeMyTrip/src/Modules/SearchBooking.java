@@ -8,6 +8,7 @@ package Modules;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import helperFunctions.*;
 import uiMap.HomePage;
@@ -45,6 +46,7 @@ public class SearchBooking{
 		
 		//Launch homepage
 		driver.get(launchURL);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		aA.pageTitle(driver,"MakeMyTrip, India's No 1 Travel Site | Book Flights, Hotels, Holiday Packages & Bus Tickets");
 		
 		//Enter the search criteria

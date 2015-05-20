@@ -11,7 +11,8 @@ public class FlightBooking{
 	@Test
 	public void domesticBooking() throws IOException{
 		SearchBooking sB = new SearchBooking();
-		sB.loadSearchCriteria("/sts/workspace/gitrepo/MakeMyTrip/MakeMyTrip/src/input/FlightBookingInput.xlsx");
+		//sB.loadSearchCriteria("/sts/workspace/gitrepo/MakeMyTrip/MakeMyTrip/src/input/FlightBookingInput.xlsx");
+		sB.loadSearchCriteria("src\\input\\FlightBookingInput.xlsx");
 		String[] flightDetails = sB.selectFlights("cheapest");
 		sB.bookingSummary(flightDetails);
 		

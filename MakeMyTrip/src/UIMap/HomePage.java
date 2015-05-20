@@ -3,6 +3,8 @@
 package uiMap;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,8 +19,6 @@ public class HomePage{
 		//driver.findElement(By.className("chf_indian_flag_big chf_flL")).isDisplayed();
 		assertTrue(driver.findElement(By.id("country_links")).isDisplayed());
 		driver.findElement(By.className("chf_flL chf_dropdown_arrow")).click();
-		
-		
 	}
 	
 	//Flight tab
@@ -44,12 +44,12 @@ public class HomePage{
 	
 	//Origin airport
 	public WebElement departureAirport(WebDriver driver){	
-		return driver.findElement(By.cssSelector("input[@placeholder='Type Departure City']"));
+		return driver.findElement(By.cssSelector("input[placeholder='Type Departure City']"));
 	}
 	
 	//Destination airport
 	public WebElement destinationAirport(WebDriver driver){	
-		WebElement a = driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
+		WebElement a = driver.findElement(By.cssSelector("input[placeholder='Type Destination City']"));
 		System.out.println(a);
 		return a;
 	}
@@ -58,7 +58,14 @@ public class HomePage{
 	public void departureDate(WebDriver driver,String startDate){
 		driver.findElement(By.id("start_date_sec")).click();
 		(driver.findElement(By.id("ui-datepicker-div"))).isDisplayed();
-		driver.findElement(By.className("ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today")).click();
+		/*
+		 driver.findElement(By.className("ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today")).click();
+		 Calendar javaCalendar = Calendar.getInstance();
+		 String stDate = (javaCalendar.get(Calendar.DATE)) + "-" + (javaCalendar.get(Calendar.MONTH) + 1) + "-" + javaCalendar.get(Calendar.YEAR);
+		 driver.findElement(By.cssSelector("class[fare-date='"+stDate+"']")).click();
+		*/
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("/html/body/div[11]/div[2]/table/tbody/tr[4]/td[4]/a")).click();
 	}
 	
 	//ReturnDate
@@ -66,11 +73,14 @@ public class HomePage{
 		
 		driver.findElement(By.id("return_date_sec")).click();
 		(driver.findElement(By.id("ui-datepicker-div"))).isDisplayed();
-		
+		/*
 		Calendar javaCalendar = Calendar.getInstance();
 		String rtnDate = (javaCalendar.get(Calendar.DATE)+1) + "-" + (javaCalendar.get(Calendar.MONTH) + 1) + "-" + javaCalendar.get(Calendar.YEAR);
 			
 		driver.findElement(By.cssSelector("class.fare-date="+rtnDate)).click();
+		*/
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("/html/body/div[11]/div[2]/table/tbody/tr[4]/td[5]/a")).click();
 	}
 	
 	//flights submit button
