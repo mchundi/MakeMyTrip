@@ -2,9 +2,11 @@
 
 package uiMap;
 
+import java.util.Calendar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import static org.testng.AssertJUnit.*;
 
 public class HomePage{
@@ -21,17 +23,23 @@ public class HomePage{
 	
 	//Flight tab
 	public WebElement flightsTab(WebDriver driver){	
-		return driver.findElement(By.cssSelector("a[href='http://www.makemytrip.com/flights']"));
+		WebElement a = driver.findElement(By.cssSelector("a[href='http://www.makemytrip.com/flights']"));
+		System.out.println(a);
+		return a;
 	}
 	
 	//Domestic option
 	public WebElement domesticTravel(WebDriver driver){	
-		return driver.findElement(By.linkText("Domestic"));
+		WebElement a = driver.findElement(By.linkText("Domestic"));
+		System.out.println(a);
+		return a;
 	}
 	
 	//Round trip type
 	public WebElement roundTrip(WebDriver driver){	
-		return driver.findElement(By.id("round_trip_button1"));
+		WebElement a = driver.findElement(By.id("round_trip_button1"));
+		System.out.println(a);
+		return a;
 	}
 	
 	//Origin airport
@@ -41,28 +49,28 @@ public class HomePage{
 	
 	//Destination airport
 	public WebElement destinationAirport(WebDriver driver){	
-		return driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
+		WebElement a = driver.findElement(By.cssSelector("input[@placeholder='Type Destination City']"));
+		System.out.println(a);
+		return a;
 	}
 	
 	//DepartureDate
 	public void departureDate(WebDriver driver,String startDate){
 		driver.findElement(By.id("start_date_sec")).click();
 		(driver.findElement(By.id("ui-datepicker-div"))).isDisplayed();
-		
-		if(startDate.equals("today"))
-			driver.findElement(By.className("ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today")).click();
-		else
-			driver.findElement(By.cssSelector("class[@fare-date=startDate]")).click();
-		
-		
+		driver.findElement(By.className("ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today")).click();
 	}
 	
 	//ReturnDate
-	public WebElement returnDate(WebDriver driver){
+	public void returnDate(WebDriver driver,String returnDate){
+		
 		driver.findElement(By.id("return_date_sec")).click();
 		(driver.findElement(By.id("ui-datepicker-div"))).isDisplayed();
-		return driver.findElement(By.className("ui-datepicker-group ui-datepicker-group-first"));
-		//driver.findElement(By.cssSelector("class[@fare-date=startDate]")).click();
+		
+		Calendar javaCalendar = Calendar.getInstance();
+		String rtnDate = (javaCalendar.get(Calendar.DATE)+1) + "-" + (javaCalendar.get(Calendar.MONTH) + 1) + "-" + javaCalendar.get(Calendar.YEAR);
+			
+		driver.findElement(By.cssSelector("class.fare-date="+rtnDate)).click();
 	}
 	
 	//flights submit button
