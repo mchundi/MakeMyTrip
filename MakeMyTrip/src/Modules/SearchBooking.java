@@ -22,7 +22,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SearchBooking{
 	
-	public void loadSearchCriteria(WebDriver driver,String in) throws IOException{
+	public WebDriver loadSearchCriteria(WebDriver driver,String in) throws IOException{
 		
 		GetInputs gI = new GetInputs();
 		HomePage hP = new HomePage();
@@ -68,6 +68,8 @@ public class SearchBooking{
 		
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		new AssertActions().pageTitle(driver, "Flight Split Listing View");
+		
+		return driver;
 		
 	}
 	

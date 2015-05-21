@@ -10,7 +10,7 @@ import uiMap.ReviewPage;
 
 public class ReviewBooking{
 
-	public void reviewItinerary(WebDriver driver){
+	public WebDriver reviewItinerary(WebDriver driver){
 		
 		new AssertActions().pageTitle(driver, "Flights Review");
 		ReviewPage rP = new ReviewPage();
@@ -23,5 +23,7 @@ public class ReviewBooking{
 		
 		System.out.println(onwardItinerary);
 		System.out.println(returnItinerary);
+		
+		return driver;
 	}
 }

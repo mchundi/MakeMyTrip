@@ -15,11 +15,11 @@ public class FlightBooking{
 	public void domesticBooking() throws IOException{
 		
 		WebDriver driver = new FirefoxDriver();
-		new SearchBooking().loadSearchCriteria(driver,"/sts/workspace/gitrepo/MakeMyTrip/MakeMyTrip/src/input/FlightBookingInput.xlsx");
-		//sB.loadSearchCriteria(driver,"src\\input\\FlightBookingInput.xlsx");
+		//new SearchBooking().loadSearchCriteria(driver,"/sts/workspace/gitrepo/MakeMyTrip/MakeMyTrip/src/input/FlightBookingInput.xlsx");
+		driver = new SearchBooking().loadSearchCriteria(driver,"src\\input\\FlightBookingInput.xlsx");
 		
-		new SelectFlight().selectCheapFlights(driver);
-		new ReviewBooking().reviewItinerary(driver);
+		driver = new SelectFlight().selectCheapFlights(driver);
+		driver = new ReviewBooking().reviewItinerary(driver);
 		
 		driver.close();
 	}

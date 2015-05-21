@@ -1,12 +1,16 @@
 package Modules;
 
+import java.util.concurrent.TimeUnit;
+
 import helperFunctions.AssertActions;
+
 import org.openqa.selenium.WebDriver;
+
 import uiMap.AvailabilityPage;
 
 public class SelectFlight{
 	
-	public void selectCheapFlights(WebDriver driver){
+	public WebDriver selectCheapFlights(WebDriver driver){
 		
 		new AssertActions().pageTitle(driver, "Flight Split Listing View");
 		AvailabilityPage aP = new AvailabilityPage();
@@ -23,8 +27,9 @@ public class SelectFlight{
 		System.out.println(onwardItinerary);
 		System.out.println(returnItinerary);
 		System.out.println(totalFare);
-		
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 		aP.bookFlight(driver).click();
+		driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
 		aP.onPriceUp(driver,"continue").click();
 		
 		setOnwardItinerary(onwardItinerary);
@@ -32,6 +37,8 @@ public class SelectFlight{
 		setTotalItinerary(totalFare);
 		
 		new AssertActions().pageTitle(driver, "Flights Review");
+		
+		return driver;
 	}
 	
 	public String setOnwardItinerary(String onwardItinerary){
